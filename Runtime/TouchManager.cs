@@ -79,7 +79,7 @@ namespace Lab5Games
 
                 if(_instance == null)
                 {
-                    GameObject go = new GameObject("[Singleton] TouchManager");
+                    GameObject go = new GameObject("TouchManager");
                     _instance = go.AddComponent<TouchManager>();
                 }
 
@@ -90,10 +90,16 @@ namespace Lab5Games
 
         private void Awake()
         {
-            if (_instance == null)
+            if(_instance != null)
+            {
+                Destroy(this);
+            }
+            else
+            {
                 _instance = this;
 
-            DontDestroyOnLoad(gameObject);
+                DontDestroyOnLoad(gameObject);
+            }
         }
 
         private void Start()
