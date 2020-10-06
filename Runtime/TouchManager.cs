@@ -90,16 +90,9 @@ namespace Lab5Games
 
         private void Awake()
         {
-            if(_instance != null)
-            {
-                Destroy(this);
-            }
-            else
-            {
-                _instance = this;
+            _instance = this;
 
-                DontDestroyOnLoad(gameObject);
-            }
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
