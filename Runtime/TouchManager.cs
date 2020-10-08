@@ -10,9 +10,9 @@ namespace Lab5Games
     public class TouchManager : MonoBehaviour
     {
 
-        private List<UTouch> _cacheTouches;
-        private List<UTouch> _liveTouches;
-        private List<GestureRecognizer> _recognizers;
+        private List<UTouch> _cacheTouches = new List<UTouch>(MAX_TOUCHES_PROCESS);
+        private List<UTouch> _liveTouches = new List<UTouch>(MAX_TOUCHES_PROCESS);
+        private List<GestureRecognizer> _recognizers = new List<GestureRecognizer>(MAX_TOUCHES_PROCESS);
 
 
         public const int MAX_TOUCHES_PROCESS = 5;
@@ -97,10 +97,6 @@ namespace Lab5Games
 
         private void Start()
         {
-            _cacheTouches = new List<UTouch>(MAX_TOUCHES_PROCESS);
-            _liveTouches = new List<UTouch>(MAX_TOUCHES_PROCESS);
-            _recognizers = new List<GestureRecognizer>(MAX_TOUCHES_PROCESS);
-
             for (int i = 0; i < MAX_TOUCHES_PROCESS; i++)
                 _cacheTouches.Add(new UTouch(i));
         }
