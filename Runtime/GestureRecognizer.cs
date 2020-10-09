@@ -78,7 +78,7 @@ namespace Lab5Games
 
         public virtual void Recognize(List<UTouch> touches)
         {
-            for(int i=_tracking.Count-1; i>=0; i--)
+            for(int i= touches.Count-1; i>=0; i--)
             {
                 UTouch touch = touches[i];
 
