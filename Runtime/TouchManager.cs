@@ -9,7 +9,7 @@ namespace Lab5Games
      * */
     public class TouchManager : MonoBehaviour
     {
-
+        
         private List<UTouch> _cacheTouches = new List<UTouch>(MAX_TOUCHES_PROCESS);
         private List<UTouch> _liveTouches = new List<UTouch>(MAX_TOUCHES_PROCESS);
         private List<GestureRecognizer> _recognizers = new List<GestureRecognizer>(MAX_TOUCHES_PROCESS);
@@ -19,20 +19,20 @@ namespace Lab5Games
 
         public static void AddRecognizer(GestureRecognizer recognizer)
         {
-            instance._recognizers.Add(recognizer);
+            Instance._recognizers.Add(recognizer);
 
-            if (instance._recognizers.Count > 1)
+            if (Instance._recognizers.Count > 1)
                 _instance._recognizers.Sort();
         }
 
         public static void RemoveRecognizer(GestureRecognizer recognizer)
         {
-            instance._recognizers.Remove(recognizer);
+            Instance._recognizers.Remove(recognizer);
         }
 
         public static List<GestureRecognizer> GetRecognizers()
         {
-            return instance._recognizers;
+            return Instance._recognizers;
         }
 
         private void UpdateTouches()
@@ -68,10 +68,16 @@ namespace Lab5Games
 
         private static TouchManager _instance = null;
 
-        public static TouchManager instance
+        public static TouchManager Instance
         {
             get
             {
+                if(_quit)
+                {
+                    Debug.LogWarning("The application is quit.");
+                    return null;
+                }
+
                 if (_instance == null)
                 {
                     _instance = FindObjectOfType<TouchManager>();
@@ -113,6 +119,13 @@ namespace Lab5Games
             _cacheTouches = null;
             _liveTouches = null;
             _recognizers = null;
+        }
+
+        private static bool _quit = false;
+
+        private void OnApplicationQuit()
+        {
+            _quit = true;
         }
     }
 }
