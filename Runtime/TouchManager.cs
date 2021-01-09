@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections.Generic;
 
 namespace Lab5Games
@@ -7,7 +6,7 @@ namespace Lab5Games
     /*
      * https://github.com/prime31/TouchKit
      * */
-    public class TouchManager : MonoBehaviour
+    public class TouchManager : Singleton<TouchManager>
     {
         
         private List<UTouch> _cacheTouches = new List<UTouch>(MAX_TOUCHES_PROCESS);
@@ -22,7 +21,7 @@ namespace Lab5Games
             Instance._recognizers.Add(recognizer);
 
             if (Instance._recognizers.Count > 1)
-                _instance._recognizers.Sort();
+                Instance._recognizers.Sort();
         }
 
         public static void RemoveRecognizer(GestureRecognizer recognizer)
@@ -66,38 +65,9 @@ namespace Lab5Games
             }
         }
 
-        private static TouchManager _instance = null;
-
-        public static TouchManager Instance
-        {
-            get
-            {
-                if(_quit)
-                {
-                    Debug.LogWarning("The application is quit.");
-                    return null;
-                }
-
-                if (_instance == null)
-                {
-                    _instance = FindObjectOfType<TouchManager>();
-                }
-
-                if(_instance == null)
-                {
-                    GameObject go = new GameObject("TouchManager");
-                    _instance = go.AddComponent<TouchManager>();
-                }
-
-                return _instance;
-            }
-        }
-
-
+        
         private void Awake()
         {
-            _instance = this;
-
             DontDestroyOnLoad(gameObject);
         }
 
@@ -112,20 +82,13 @@ namespace Lab5Games
             UpdateTouches();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
-            _instance = null;
+            base.OnDestroy();
 
             _cacheTouches = null;
             _liveTouches = null;
             _recognizers = null;
-        }
-
-        private static bool _quit = false;
-
-        private void OnApplicationQuit()
-        {
-            _quit = true;
         }
     }
 }
