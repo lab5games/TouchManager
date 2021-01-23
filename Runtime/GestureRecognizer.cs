@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Lab5Games
+namespace Lab5Games.LTouch
 {
     public abstract class GestureRecognizer : IComparable<GestureRecognizer>
     {

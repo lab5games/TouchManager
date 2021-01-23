@@ -1,5 +1,5 @@
 ﻿
-namespace Lab5Games
+namespace Lab5Games.LTouch
 {
     public class SwipeRecognizer : GestureRecognizer
     {

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Lab5Games.Lab5GamesKit;
 
-namespace Lab5Games
+namespace Lab5Games.LTouch
 {
     /*
      * https://github.com/prime31/TouchKit

@@ -1,11 +1,15 @@
 {
     "name": "com.lab5games.touchmanager",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "displayName": "Touch Manager",
     "unity": "2019.4",
     
     "repository": {
         "type": "git",
         "url": "https://github.com/lab5games/TouchManager.git"
+    },
+
+    "dependencies": {
+        "com.lab5games.lab5gameskit" : "1.2.0"
     }
  }
