@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Lab5Games.Lab5GamesKit;
+using Lab5Games;
 
 namespace Lab5Games.LTouch
 {
